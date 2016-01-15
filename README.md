@@ -17,6 +17,10 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
 
 ## Changelog
 
+### 1.0.2:
+* Added the ability to turn on and off the restriction (off by default)
+* Added Settings link to the Plugin listing page
+
 ### 1.0.1:
 * Updated documentation
 

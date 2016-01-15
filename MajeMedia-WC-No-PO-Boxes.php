@@ -22,10 +22,10 @@ class MajeMedia_WC_No_PO_Boxes {
 	private static $instance;
 	public static  $plugin_path;
 
-	const OPTIONS_GROUP         = 'mm_wc_no_po_boxes_options';
+	const OPTIONS_GROUP = 'mm_wc_no_po_boxes_options';
 	const OPTIONS_ERROR_MESSAGE = 'mm_wc_no_po_boxes_error_message';
-	const OPTIONS_ENABLE        = 'mm_wc_no_po_boxes_enable';
-	const TEXT_DOMAIN           = 'mm-wc-no-po-boxes';
+	const OPTIONS_ENABLE = 'mm_wc_no_po_boxes_enable';
+	const TEXT_DOMAIN = 'mm-wc-no-po-boxes';
 
 	/*
 	 * @since v1.0
@@ -94,6 +94,10 @@ class MajeMedia_WC_No_PO_Boxes {
 		// Plugin functions
 		add_action( 'admin_init', array( 'MajeMedia_WC_No_PO_Dashboard_Settings', 'register_settings' ) );
 		add_action( 'admin_menu', array( 'MajeMedia_WC_No_PO_Dashboard_Settings', 'setup_options_page' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array(
+			'MajeMedia_WC_No_PO_Dashboard_Settings',
+			'plugin_settings_link',
+		) );
 
 	}
 

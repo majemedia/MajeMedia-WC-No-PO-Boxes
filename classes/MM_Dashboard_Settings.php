@@ -60,4 +60,12 @@ class MajeMedia_WC_No_PO_Dashboard_Settings {
 
 	}
 
+	public static function plugin_settings_link( $links ) {
+
+		$settings_link = array( '<a href="' . admin_url( 'admin.php?page=mm_wc_no_po_boxes' ) . '" title="Customize Messaging and Enable PO Box Restriction">Settings</a>');
+
+		return array_merge( $settings_link, $links );
+
+	}
+
 }

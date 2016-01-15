@@ -22,9 +22,10 @@ class MajeMedia_WC_No_PO_Boxes {
 	private static $instance;
 	public static  $plugin_path;
 
-	const OPTIONS_GROUP            = 'mm_wc_no_po_boxes_options';
-	const OPTIONS_ERROR_MESSAGE    = 'mm_wc_no_po_boxes_error_message';
-	const TEXT_DOMAIN              = 'mm-wc-no-po-boxes';
+	const OPTIONS_GROUP         = 'mm_wc_no_po_boxes_options';
+	const OPTIONS_ERROR_MESSAGE = 'mm_wc_no_po_boxes_error_message';
+	const OPTIONS_ENABLE        = 'mm_wc_no_po_boxes_enable';
+	const TEXT_DOMAIN           = 'mm-wc-no-po-boxes';
 
 	/*
 	 * @since v1.0
@@ -62,6 +63,7 @@ class MajeMedia_WC_No_PO_Boxes {
 	public static function activate() {
 
 		update_option( self::OPTIONS_ERROR_MESSAGE, esc_html__( 'Sorry, we cannot ship to P.O. Boxes', self::TEXT_DOMAIN ) );
+		update_option( self::OPTIONS_ENABLE, '' );
 
 	}
 
@@ -74,6 +76,7 @@ class MajeMedia_WC_No_PO_Boxes {
 	public static function deactivate() {
 
 		delete_option( self::OPTIONS_ERROR_MESSAGE );
+		delete_option( self::OPTIONS_ENABLE );
 
 	}
 
@@ -101,7 +104,10 @@ class MajeMedia_WC_No_PO_Boxes {
 	 */
 	public function nopriv_actions() {
 
-		add_action( 'woocommerce_before_checkout_process', array( 'MajeMedia_WC_No_Po_Checkout', 'get_checkout_post' ) );
+		add_action( 'woocommerce_before_checkout_process', array(
+			'MajeMedia_WC_No_Po_Checkout',
+			'get_checkout_post',
+		) );
 
 	}
 

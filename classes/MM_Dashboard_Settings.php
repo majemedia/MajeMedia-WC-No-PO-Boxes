@@ -24,6 +24,7 @@ class MajeMedia_WC_No_PO_Dashboard_Settings {
 		if ( is_admin() ) {
 
 			register_setting( MajeMedia_WC_No_PO_Boxes::OPTIONS_GROUP, MajeMedia_WC_No_PO_Boxes::OPTIONS_ERROR_MESSAGE );
+			register_setting( MajeMedia_WC_No_PO_Boxes::OPTIONS_GROUP, MajeMedia_WC_No_PO_Boxes::OPTIONS_ENABLE );
 
 		}
 

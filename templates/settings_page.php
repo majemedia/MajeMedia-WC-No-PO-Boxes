@@ -17,9 +17,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php settings_fields( MajeMedia_WC_No_PO_Boxes::OPTIONS_GROUP ); ?>
 		<table class="form-table">
 			<tr valign="top">
+				<th scope="row"><?php esc_html_e( 'Enable PO Box Restriction', MajeMedia_WC_No_PO_Boxes::TEXT_DOMAIN ); ?>:</th>
+				<td><input type="checkbox" name="<?php echo MajeMedia_WC_No_PO_Boxes::OPTIONS_ENABLE; ?>" <?php checked( esc_attr( get_option( MajeMedia_WC_No_PO_Boxes::OPTIONS_ENABLE ) ), 'on' ); ?>>
+				</td>
+			</tr>
+			<tr valign="top">
 				<th scope="row"><?php esc_html_e( 'Error Message', MajeMedia_WC_No_PO_Boxes::TEXT_DOMAIN ); ?>:</th>
 				<td><input type="text" name="<?php echo MajeMedia_WC_No_PO_Boxes::OPTIONS_ERROR_MESSAGE; ?>"
-				           value="<?php echo esc_attr( get_option( MajeMedia_WC_No_PO_Boxes::OPTIONS_ERROR_MESSAGE ) ); ?>"
+				           value="<?php echo esc_attr( get_option( MajeMedia_WC_No_PO_Boxes::OPTIONS_ERROR_MESSAGE ) ); ?>">
 				</td>
 			</tr>
 		</table>

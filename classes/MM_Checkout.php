@@ -23,8 +23,9 @@ class MajeMedia_WC_No_Po_Checkout {
 	 */
 	public static function get_checkout_post() {
 
+		$restriction_enabled = get_option( MajeMedia_WC_No_PO_Boxes::OPTIONS_ENABLE );
 
-		if ( WC()->cart->needs_shipping() ) {
+		if ( WC()->cart->needs_shipping() && $restriction_enabled === 'on' ) {
 
 			if ( isset( $_POST[ 'ship_to_different_address' ] ) && $_POST[ 'ship_to_different_address' ] ) {
 

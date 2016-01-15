@@ -66,6 +66,8 @@ class MajeMedia_WC_No_Po_Checkout {
 			'p.o.box',
 			'post office box',
 			'p.o.',
+			'pmb', // private mail box (UPS Stores)
+			'private mail box',
 		);
 
 		return $possible_pobox_combinations;

@@ -60,7 +60,7 @@ class MajeMedia_WC_No_Po_Checkout {
 				 *
 				 */
 				$restricted_shipping_message = apply_filters( 'mmwc_restricted_message', esc_attr( get_option( MajeMedia_WC_No_PO_Boxes::OPTIONS_ERROR_MESSAGE ) ), $has_po_box[ 'string' ], $has_po_box[ 'field' ] );
-				
+
 				wc_add_notice( esc_html__( $restricted_shipping_message, MajeMedia_WC_No_PO_Boxes::TEXT_DOMAIN ), 'error' );
 
 			}

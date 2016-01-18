@@ -71,7 +71,20 @@ class MajeMedia_WC_No_Po_Checkout {
 			'private mail box',
 		);
 
-		return $possible_pobox_combinations;
+		/*
+		 * Filter: mmwc_restricted_words
+		 *
+		 * Expected return: array of words
+		 *
+		 * example: array('new word','another new word');
+		 *
+		 * Allows for the programmatic updating of the list of restricted words
+		 *
+		 * Note: This filter will not change the message displayed to the customer.
+		 */
+		$filtered_restrictions = apply_filters('mmwc_restricted_words', $possible_pobox_combinations );
+
+		return $filtered_restrictions;
 
 	}
 

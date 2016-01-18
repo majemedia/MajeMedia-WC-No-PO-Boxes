@@ -35,7 +35,7 @@ Github project: https://github.com/majemedia/MajeMedia-WC-No-PO-Boxes
 3. Settings page with configurable messaging (no html markup allowed)
 
 == Changelog ==
-= 1.1.1 =
+= 1.1.1: =
 * Changed to using plain text text domain instead of class constant
 
 = 1.1.0: =

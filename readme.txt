@@ -3,7 +3,7 @@ Contributors: majemedia
 Tags: woocommerce,checkout,po boxes
 Requires at least: 4.3.2
 Tested up to: 4.4.1
-Stable tag: 1.0.2
+Stable tag: 1.1.0
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,6 +16,8 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
 - If the customer is shipping to a different physical address they cannot use a PO Box as a shipping address, but can use it as a billing address.
 - Does not restrict the use of PO Boxes on Digital/Virtual only carts.
 - Disabled by default.
+
+Usage and extending examples can be found here: https://majemedia.com/plugins/no-po-boxes
 
 Github project: https://github.com/majemedia/MajeMedia-WC-No-PO-Boxes
 
@@ -33,6 +35,10 @@ Github project: https://github.com/majemedia/MajeMedia-WC-No-PO-Boxes
 3. Settings page with configurable messaging (no html markup allowed)
 
 == Changelog ==
+= 1.1.0: =
+* Added filter `mmwc_restricted_message`
+* Added filter `mmwc_restricted_words`
+
 = 1.0.2: =
 * Added the ability to turn on and off the restriction (off by default)
 * Added Settings link to the Plugin listing page

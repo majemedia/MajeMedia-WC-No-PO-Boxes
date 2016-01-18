@@ -1,4 +1,4 @@
-# MajeMedia-WC-No-PO-Boxes
+# Maje Media WooCommerce No PO Boxes
 Disallows the use of PO Boxes for shipping when using WooCommerce
 
 ## Description
@@ -15,7 +15,56 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
 5. Insert your custom messages
 6. Click "Save Changes"
 
+## Extending
+
+### Filter: `mmwc_restricted_message`
+[example](https://majemedia.com/plugins/no-po-boxes/#mmwc_restricted_message)
+
+    add_filter( 'mmwc_restricted_message', 'mmwc_restricted_message_example', 10, 3 );
+    function mmwc_restricted_message_example( $message, $restricted_string, $field_with_restricted_string ) {
+    
+        // use $restricted_string to customize $message based on different conditions. 
+        // use $field_with_restricted_string to customize the message based on what field the restriction occurred in
+    
+        $message = 'This is the message I want to display now instead of the saved one from the dashboard';
+    
+        return $message;
+    
+    }
+
+### Filter: `mmwc_restricted_words`
+[example](https://majemedia.com/plugins/no-po-boxes/#mmwc_restricted_words)
+
+    add_filter( 'mmwc_restricted_words', 'mmwc_restricted_words_example' );
+    function mmwc_restricted_words_example( $words ) {
+    
+        /*
+         * You'll need to modify this example function since a number of different filtering options are being used.
+         */
+    
+        // Remove options by word (has to be exact to what is in `MajeMedia_WC_No_Po_Checkout::restricted_strings()` );
+        if ( ( $key = array_search( 'word I do not want to filter', $words ) ) !== FALSE ) {
+            unset( $words[ $key ] );
+        }
+    
+        // Remove strings by array_key from `MajeMedia_WC_No_Po_Checkout::restricted_strings()`
+        unset( $words[ 0 ] ); // unsets "po box"
+    
+        // Add an additional string
+        $words[] = 'my new restricted string';
+    
+        // delete all restricted strings from default plugin and define your own
+        $words = array( 'my restriction 1', 'my restriction 2' );
+    
+        return $words;
+    
+    }
+
 ## Changelog
+
+### 1.1.0:
+* Added filter `mmwc_restricted_message`
+* Added filter `mmwc_restricted_words`
 
 ### 1.0.2:
 * Added the ability to turn on and off the restriction (off by default)

@@ -61,6 +61,8 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
     }
 
 ## Changelog
+### 1.1.1
+* Changed to using plain text text domain instead of class constant
 
 ### 1.1.0:
 * Added filter `mmwc_restricted_message`

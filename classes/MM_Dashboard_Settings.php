@@ -40,8 +40,8 @@ class MajeMedia_WC_No_PO_Dashboard_Settings {
 	public static function setup_options_page() {
 
 		$parent_slug = 'woocommerce';
-		$page_title  = esc_html__( "Don't Allow PO Boxes", MajeMedia_WC_No_PO_Boxes::TEXT_DOMAIN );
-		$menu_title  = esc_html__( 'No PO Boxes', MajeMedia_WC_No_PO_Boxes::TEXT_DOMAIN );
+		$page_title  = esc_html__( "Don't Allow PO Boxes", 'mm-wc-no-po-boxes' );
+		$menu_title  = esc_html__( 'No PO Boxes', 'mm-wc-no-po-boxes' );
 		$capability  = 'manage_woocommerce';
 		$menu_slug   = 'mm_wc_no_po_boxes';
 		$callback    = array( 'MajeMedia_WC_No_PO_Dashboard_Settings', 'options_page', );

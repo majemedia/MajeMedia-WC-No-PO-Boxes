@@ -3,7 +3,7 @@ Contributors: majemedia
 Tags: woocommerce,checkout,po boxes
 Requires at least: 4.3.2
 Tested up to: 4.4.1
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,9 @@ Github project: https://github.com/majemedia/MajeMedia-WC-No-PO-Boxes
 3. Settings page with configurable messaging (no html markup allowed)
 
 == Changelog ==
+= 1.1.1 =
+* Changed to using plain text text domain instead of class constant
+
 = 1.1.0: =
 * Added filter `mmwc_restricted_message`
 * Added filter `mmwc_restricted_words`

@@ -46,6 +46,8 @@ class MajeMedia_WC_No_Po_Checkout {
 				/*
 		         * Filter: mmwc_restricted_message
 		         *
+				 * @since 1.1.0
+				 *
 				 * Expected return: String
 				 *
 				 * example return: "This is the message that's displayed when checkout fails";
@@ -61,7 +63,7 @@ class MajeMedia_WC_No_Po_Checkout {
 				 */
 				$restricted_shipping_message = apply_filters( 'mmwc_restricted_message', esc_attr( get_option( MajeMedia_WC_No_PO_Boxes::OPTIONS_ERROR_MESSAGE ) ), $has_po_box[ 'string' ], $has_po_box[ 'field' ] );
 
-				wc_add_notice( esc_html__( $restricted_shipping_message, MajeMedia_WC_No_PO_Boxes::TEXT_DOMAIN ), 'error' );
+				wc_add_notice( esc_html__( $restricted_shipping_message, 'mm-wc-no-po-boxes' ), 'error' );
 
 			}
 
@@ -91,6 +93,8 @@ class MajeMedia_WC_No_Po_Checkout {
 
 		/*
 		 * Filter: mmwc_restricted_words
+		 *
+		 * @since 1.1.0
 		 *
 		 * Expected return: array of words
 		 *

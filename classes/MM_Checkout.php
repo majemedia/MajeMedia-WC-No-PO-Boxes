@@ -43,7 +43,25 @@ class MajeMedia_WC_No_Po_Checkout {
 
 			if ( $has_po_box[ 'po_found' ] ) {
 
-				wc_add_notice( esc_html__( esc_attr( get_option( MajeMedia_WC_No_PO_Boxes::OPTIONS_ERROR_MESSAGE ) ), MajeMedia_WC_No_PO_Boxes::TEXT_DOMAIN ), 'error' );
+				/*
+		         * Filter: mmwc_restricted_message
+		         *
+				 * Expected return: String
+				 *
+				 * example return: "This is the message that's displayed when checkout fails";
+				 *
+				 * Online Example: https://majemedia.com/plugins/no-po-boxes/#mmwc_restricted_message
+				 *
+				 * Additional Arguments available:
+				 * - $has_po_box['string']: the string that triggered the error
+				 * - $has_po_box['field']: the field that triggered the error
+				 *
+				 * Description: Allows for the programmatic updating of the list of restricted words
+				 *
+				 */
+				$restricted_shipping_message = apply_filters( 'mmwc_restricted_message', esc_attr( get_option( MajeMedia_WC_No_PO_Boxes::OPTIONS_ERROR_MESSAGE ) ), $has_po_box[ 'string' ], $has_po_box[ 'field' ] );
+				
+				wc_add_notice( esc_html__( $restricted_shipping_message, MajeMedia_WC_No_PO_Boxes::TEXT_DOMAIN ), 'error' );
 
 			}
 
@@ -78,11 +96,13 @@ class MajeMedia_WC_No_Po_Checkout {
 		 *
 		 * example: array('new word','another new word');
 		 *
+		 * Online Example: https://majemedia.com/plugins/no-po-boxes/#mmwc_restricted_words
+		 *
 		 * Allows for the programmatic updating of the list of restricted words
 		 *
 		 * Note: This filter will not change the message displayed to the customer.
 		 */
-		$filtered_restrictions = apply_filters('mmwc_restricted_words', $possible_pobox_combinations );
+		$filtered_restrictions = apply_filters( 'mmwc_restricted_words', $possible_pobox_combinations );
 
 		return $filtered_restrictions;
 
@@ -113,7 +133,7 @@ class MajeMedia_WC_No_Po_Checkout {
 
 					$field = $address[ 'type' ] . '_address_' . $key;
 
-					return array( 'po_found' => TRUE, 'field' => $field );
+					return array( 'po_found' => TRUE, 'field' => $field, 'string' => $po_box_string );
 
 				}
 

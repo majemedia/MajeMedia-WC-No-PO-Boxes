@@ -4,21 +4,41 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit();
 }
 
+$mm_woocommerce_shipping = new WC_Shipping();
+$shipping_enabled        = $mm_woocommerce_shipping->enabled;
+$restrict_po_setting     = ( esc_attr( get_option( MajeMedia_WC_No_PO_Boxes::OPTIONS_ENABLE ) ) === 'on' ) ? TRUE : FALSE;
+$woocommerce_shipping_page = 'admin.php?page=wc-settings&tab=shipping';
+
 ?>
 
 <div class="wrap">
 	<h1><?php esc_html_e( "Don't Allow PO Boxes", 'mm-wc-no-po-boxes' ); ?></h1>
 
 	<h2><?php esc_html_e( 'How it works', 'mm-wc-no-po-boxes' ); ?></h2>
-	<p><span><?php esc_html_e( 'When a checkout is attempted with a billing address only then the check is done on both billing address fields.', 'mm-wc-no-po-boxes'); ?></span><br /><span><?php esc_html_e( 'If a checkout is attempted with a separate shipping address is enabled then the check is only done on the shipping addresses.', 'mm-wc-no-po-boxes' ); ?></span></p>
+	<p>
+		<span><?php esc_html_e( 'When a checkout is attempted with a billing address only then the check is done on both billing address fields.', 'mm-wc-no-po-boxes' ); ?></span><br/><span><?php esc_html_e( 'If a checkout is attempted with a separate shipping address is enabled then the check is only done on the shipping addresses.', 'mm-wc-no-po-boxes' ); ?></span>
+	</p>
 
 	<h2><?php esc_html_e( 'Options', 'mm-wc-no-po-boxes' ); ?></h2>
+	<?php if ( ! $shipping_enabled ) {
+
+		?>
+
+		<div class="error notice">
+			<p><?php _e( 'WooCommerce shipping is currently disabled. Restriction will only work when shipping is enabled.', 'mm-wc-no-po-boxes' ); ?><br /><a href="<?php echo $woocommerce_shipping_page; ?>"><?php _e('View WooCommerce shipping options', 'mm-wc-no-po-boxes' ); ?></a></p>
+		</div>
+
+		<?php
+
+	}
+
+	?>
 	<form method="post" action="options.php">
 		<?php settings_fields( MajeMedia_WC_No_PO_Boxes::OPTIONS_GROUP ); ?>
 		<table class="form-table">
 			<tr valign="top">
 				<th scope="row"><?php esc_html_e( 'Enable PO Box Restriction', 'mm-wc-no-po-boxes' ); ?>:</th>
-				<td><input type="checkbox" name="<?php echo MajeMedia_WC_No_PO_Boxes::OPTIONS_ENABLE; ?>" <?php checked( esc_attr( get_option( MajeMedia_WC_No_PO_Boxes::OPTIONS_ENABLE ) ), 'on' ); ?>>
+				<td><input type="checkbox" name="<?php echo MajeMedia_WC_No_PO_Boxes::OPTIONS_ENABLE; ?>" <?php checked( $restrict_po_setting, TRUE ); ?>>
 				</td>
 			</tr>
 			<tr valign="top">
@@ -33,7 +53,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</form>
 
 	<h2><?php esc_html_e( 'Currently Restricted Text', 'mm-wc-no-po-boxes' ); ?></h2>
-	<p><?php esc_html_e( 'This plugin looks at the entered text in the address fields in lower case and then checks against the following', 'mm-wc-no-po-boxes' ); ?>:</p>
+	<p><?php esc_html_e( 'This plugin looks at the entered text in the address fields in lower case and then checks against the following', 'mm-wc-no-po-boxes' ); ?>
+		:</p>
 	<ul>
 		<?php
 

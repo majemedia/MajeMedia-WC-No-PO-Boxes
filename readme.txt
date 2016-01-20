@@ -3,11 +3,11 @@ Contributors: majemedia
 Tags: woocommerce,checkout,po boxes
 Requires at least: 4.3.2
 Tested up to: 4.4.1
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Adds messaging to the WooCommerce checkout form
+Stop Shipping to PO Boxes
 
 == Description ==
 Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addresses.
@@ -16,6 +16,7 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
 - If the customer is shipping to a different physical address they cannot use a PO Box as a shipping address, but can use it as a billing address.
 - Does not restrict the use of PO Boxes on Digital/Virtual only carts.
 - Disabled by default.
+- Requires that WooCommerce shipping is enabled.
 
 Usage and extending examples can be found here: https://majemedia.com/plugins/no-po-boxes
 
@@ -23,11 +24,12 @@ Github project: https://github.com/majemedia/MajeMedia-WC-No-PO-Boxes
 
 == Installation ==
 1. Have WooCommerce installed and activated
-2. Add this plugin or upload the .zip file (downloaded from here)
-3. Activate plugin
-4. Go to the settings screen (can be found under the WooCommerce menu as "No PO Boxes")
-5. Insert your custom messages
-6. Click "Save Changes"
+2. Enable shipping
+3. Add this plugin or upload the .zip file (downloaded from here)
+4. Activate plugin
+5. Go to the settings screen (can be found under the WooCommerce menu as "No PO Boxes")
+6. Insert your custom messages
+7. Click "Save Changes"
 
 == Screenshots ==
 1. When shipping to a different address only the shipping side is reviewed
@@ -35,6 +37,9 @@ Github project: https://github.com/majemedia/MajeMedia-WC-No-PO-Boxes
 3. Settings page with configurable messaging (no html markup allowed)
 
 == Changelog ==
+= 1.1.2: =
+* Added instruction text for cases where WooCommerce shipping is not enabled
+
 = 1.1.1: =
 * Changed to using plain text text domain instead of class constant
 

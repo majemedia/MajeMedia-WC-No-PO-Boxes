@@ -2,8 +2,8 @@
 Contributors: majemedia
 Tags: woocommerce,checkout,po boxes
 Requires at least: 4.3.2
-Tested up to: 4.4.1
-Stable tag: 1.1.2
+Tested up to: 4.5
+Stable tag: 1.1.3
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -37,6 +37,9 @@ Github project: https://github.com/majemedia/MajeMedia-WC-No-PO-Boxes
 3. Settings page with configurable messaging (no html markup allowed)
 
 == Changelog ==
+= 1.1.3: =
+* Updated for WordPress 4.5 Compatibility
+
 = 1.1.2: =
 * Added instruction text for cases where WooCommerce shipping is not enabled
 

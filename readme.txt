@@ -2,7 +2,7 @@
 Contributors: majemedia
 Tags: woocommerce,checkout,po boxes
 Requires at least: 4.3.2
-Tested up to: 4.7
+Tested up to: 4.7.1
 Stable tag: 1.1.7
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html

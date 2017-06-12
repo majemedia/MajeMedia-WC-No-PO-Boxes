@@ -65,6 +65,9 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
     }
 
 ## Changelog
+### 1.1.8:
+* Tested to WordPress version 4.8
+
 ### 1.1.7:
 * Tested to WordPress version 4.7.1
 

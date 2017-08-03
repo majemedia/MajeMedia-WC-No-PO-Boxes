@@ -7,8 +7,8 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
 - If same billing/shipping address the customer cannot complete checkout with a PO Box as a billing/shipping address.
 - If the customer is shipping to a different physical address they cannot use a PO Box as a shipping address, but can use it as a billing address.
 - Does not restrict the use of PO Boxes on Digital/Virtual only carts.
-- Disabled by default.
 - Requires that WooCommerce shipping is enabled.
+- Requires that WooCommerce has a shipping method setup (can be free shipping only)
 
 ## Installation
 1. Have WooCommerce installed and activated
@@ -65,6 +65,13 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
     }
 
 ## Changelog
+### 1.1.9
+* Fix: Plugin options getting deleted upon plugin deactivation.
+* Updated: Plugin options are deleted upon uninstall.
+* Updated: Added link to documentation on settings page
+* Updated: Default functionality status: On (previously disabled upon installation)
+* Tested to Wordpress veresion 4.8.1
+
 ### 1.1.8:
 * Tested to WordPress version 4.8
 

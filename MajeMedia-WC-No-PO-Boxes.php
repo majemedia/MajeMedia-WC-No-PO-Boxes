@@ -4,7 +4,7 @@
 Plugin Name: Maje WC No PO Boxes
 Plugin URI:  https://majemedia.com/plugins/no-po-boxes
 Description: Restricts the use of PO Boxes during WooCommerce checkout. It contains a configurable message to display when a PO Box is attempted to be used. Will not limit the use of PO Boxes for carts that only contain digital products.
-Version:     1.1.7
+Version:     1.1.9
 Author:      Maje Media LLC
 Author URI:  https://majemedia.com
 License:     GPL2
@@ -63,7 +63,7 @@ class MajeMedia_WC_No_PO_Boxes {
 	public static function activate() {
 
 		update_option( self::OPTIONS_ERROR_MESSAGE, esc_html__( 'Sorry, we cannot ship to P.O. Boxes', 'mm-wc-no-po-boxes' ) );
-		update_option( self::OPTIONS_ENABLE, '' );
+		update_option( self::OPTIONS_ENABLE, 'on' );
 
 	}
 
@@ -74,6 +74,10 @@ class MajeMedia_WC_No_PO_Boxes {
 	 * @description Actions to run upon deactivation of this plugin.
 	 */
 	public static function deactivate() {
+
+	}
+
+	public static function uninstall() {
 
 		delete_option( self::OPTIONS_ERROR_MESSAGE );
 		delete_option( self::OPTIONS_ENABLE );
@@ -118,3 +122,5 @@ class MajeMedia_WC_No_PO_Boxes {
 }
 
 $MajeMedia_WC_No_PO_Boxes = MajeMedia_WC_No_PO_Boxes::get_instance();
+
+register_uninstall_hook(__FILE__, ['MajeMedia_WC_No_PO_Boxes','uninstall']);

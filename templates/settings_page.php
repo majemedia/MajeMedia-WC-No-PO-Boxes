@@ -55,8 +55,8 @@ $woocommerce_shipping_page = 'admin.php?page=wc-settings&tab=shipping';
 	</form>
 
 	<h2><?php esc_html_e( 'Currently Restricted Text', 'mm-wc-no-po-boxes' ); ?></h2>
-	<p><?php esc_html_e( 'This plugin looks at the entered text in the address fields in lower case and then checks against the following', 'mm-wc-no-po-boxes' ); ?>
-		:</p>
+	<p><?php esc_html_e( 'This plugin looks at the entered text in the address fields in lower case and then checks against the following (not case sensitive)', 'mm-wc-no-po-boxes' ); ?>
+        :<br />Add or Remove items from this list by using filters. <a href="https://www.majemedia.com/plugins/no-po-boxes/" target="_blank">Guide here</a></p>
 	<ul>
 		<?php
 

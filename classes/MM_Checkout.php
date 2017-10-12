@@ -32,7 +32,8 @@ class MajeMedia_WC_No_Po_Checkout {
 				$address_fields[ 1 ] = array( 'type' => 'shipping', 'value' => $_POST[ 'shipping_address_1' ] );
 				$address_fields[ 2 ] = array( 'type' => 'shipping', 'value' => $_POST[ 'shipping_address_2' ] );
 
-			} else {
+			}
+			else {
 
 				$address_fields[ 1 ] = array( 'type' => 'billing', 'value' => $_POST[ 'billing_address_1' ] );
 				$address_fields[ 2 ] = array( 'type' => 'billing', 'value' => $_POST[ 'billing_address_2' ] );
@@ -131,7 +132,7 @@ class MajeMedia_WC_No_Po_Checkout {
 
 			foreach ( $possible_pobox_strings as $po_box_string ) {
 
-				$po_box_position = strpos( strtolower( $address[ 'value' ] ), $po_box_string );
+				$po_box_position = strpos( strtolower( $address[ 'value' ] ), strtolower( $po_box_string ) );
 
 				if ( $po_box_position !== FALSE ) {
 

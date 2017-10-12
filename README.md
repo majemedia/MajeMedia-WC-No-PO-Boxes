@@ -65,6 +65,11 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
     }
 
 ## Changelog
+### 1.1.10
+* Fix: Plugin now puts all restricted strings to lowercase instead of assuming they are
+* Tested to WordPress version 4.8.2
+* Added WooCommerce version check strings to main php file
+
 ### 1.1.9
 * Fix: Plugin options getting deleted upon plugin deactivation.
 * Updated: Plugin options are deleted upon uninstall.

@@ -1,9 +1,9 @@
 === Maje WooCommerce No PO Boxes ===
 Contributors: majemedia
-Tags: woocommerce,checkout,po boxes
+Tags: woocommerce,checkout,po boxes,don't ship to po boxes,disallow po box shipping,prevent po boxes,post office box
 Requires at least: 4.3.2
-Tested up to: 4.8.1
-Stable tag: 1.1.9
+Tested up to: 4.8.2
+Stable tag: 1.1.10
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,12 +34,17 @@ Github project: https://github.com/majemedia/MajeMedia-WC-No-PO-Boxes
 3. Settings page with configurable messaging (no html markup allowed)
 
 == Changelog ==
+= 1.1.10 =
+* Fix: Plugin now puts all restricted strings to lowercase instead of assuming they are
+* Tested to WordPress version 4.8.2
+* Added WooCommerce version check strings to main php file
+
 = 1.1.9 =
 * Fix: Plugin options getting deleted upon plugin deactivation
 * Updated: Plugin options are deleted upon uninstall
 * Updated: Added link to documentation on settings page
 * Updated: Default functionality status: On (previously disabled upon installation)
-* Tested to Wordpress veresion 4.8.1
+* Tested to Wordpress version 4.8.1
 
 = 1.1.8: =
 * Tested to WordPress version 4.8

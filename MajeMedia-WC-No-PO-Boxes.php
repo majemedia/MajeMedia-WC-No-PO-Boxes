@@ -11,6 +11,8 @@ License:     GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Domain Path: /languages
 Text Domain: mm-wc-no-po-boxes
+WC requires at least: 3.0.0
+WC tested up to: 3.2.0
 */
 
 if ( ! defined( 'ABSPATH' ) ) {

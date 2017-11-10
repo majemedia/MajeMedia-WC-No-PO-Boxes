@@ -82,14 +82,19 @@ class MajeMedia_WC_No_Po_Checkout {
 	public static function restricted_strings() {
 
 		$possible_pobox_combinations = array(
-			'po box',
-			'p.o. box',
-			'pobox',
-			'p.o.box',
-			'post office box',
-			'p.o.',
-			'pmb', // private mail box (UPS Stores)
-			'private mail box',
+			'po box'
+			, 'p.o. box'
+			, 'p.o box'
+			, 'po.box'
+			, 'po. box'
+			, 'p.o'
+			, 'p.o.'
+			, 'pobox'
+			, 'p.o.box'
+			, 'post office box'
+			, 'p.o.'
+			, 'pmb' // private mail box (UPS Stores)
+			, 'private mail box'
 		);
 
 		/*

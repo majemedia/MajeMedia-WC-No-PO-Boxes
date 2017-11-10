@@ -1,14 +1,10 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
+if( ! defined( 'ABSPATH' ) ) {
 	die();
 }
 
-/*
- * 
- */
-
-class MajeMedia_WC_No_PO_Dashboard_Settings {
+class MWNPB_DashboardSettings {
 
 	public function __construct() {
 
@@ -19,14 +15,12 @@ class MajeMedia_WC_No_PO_Dashboard_Settings {
 	 *
 	 * @since 1.0
 	 */
-	public static function register_settings() {
+	public static function RegisterSettings() {
 
-		if ( is_admin() ) {
+		$MWNPB = MWNPB::GetInstance();
 
-			register_setting( MajeMedia_WC_No_PO_Boxes::OPTIONS_GROUP, MajeMedia_WC_No_PO_Boxes::OPTIONS_ERROR_MESSAGE );
-			register_setting( MajeMedia_WC_No_PO_Boxes::OPTIONS_GROUP, MajeMedia_WC_No_PO_Boxes::OPTIONS_ENABLE );
-
-		}
+		register_setting( $MWNPB->optionsGroup, $MWNPB->optionsErrorMessage );
+		register_setting( $MWNPB->optionsGroup, $MWNPB->optionsEnable );
 
 	}
 
@@ -37,30 +31,30 @@ class MajeMedia_WC_No_PO_Dashboard_Settings {
 	 *
 	 * @since 1.0
 	 */
-	public static function setup_options_page() {
+	public static function SetupOptionsPage() {
 
 		$parent_slug = 'woocommerce';
 		$page_title  = esc_html__( "Don't Allow PO Boxes", 'mm-wc-no-po-boxes' );
 		$menu_title  = esc_html__( 'No PO Boxes', 'mm-wc-no-po-boxes' );
 		$capability  = 'manage_woocommerce';
 		$menu_slug   = 'mm_wc_no_po_boxes';
-		$callback    = array( 'MajeMedia_WC_No_PO_Dashboard_Settings', 'options_page', );
+		$callback    = array( 'MWNPB_DashboardSettings', 'OptionsPage', );
 
 		add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $callback );
 
 	}
 
-	public static function options_page() {
+	public static function OptionsPage() {
 
-		if ( is_admin() ) {
+		$MWNPB = MWNPB::GetInstance();
 
-			include( MajeMedia_WC_No_PO_Boxes::$plugin_path . '/templates/settings_page.php' );
-
-		}
+		include( $MWNPB->pluginPath . '/templates/settings_page.php' );
 
 	}
 
-	public static function plugin_settings_link( $links ) {
+	public static function PluginSettingsLink( $links ) {
+
+		$MWNPB = MWNPB::GetInstance();
 
 		$settings_link = array( '<a href="' . admin_url( 'admin.php?page=mm_wc_no_po_boxes' ) . '" title="Customize Messaging and Enable PO Box Restriction">Settings</a>' );
 

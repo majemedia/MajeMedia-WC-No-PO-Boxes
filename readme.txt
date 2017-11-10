@@ -2,25 +2,32 @@
 Contributors: majemedia
 Tags: woocommerce,checkout,po boxes,don't ship to po boxes,disallow po box shipping,prevent po boxes,post office box
 Requires at least: 4.3.2
-Tested up to: 4.8.2
-Stable tag: 1.1.12
+Tested up to: 4.9
+Requires PHP: 5.6
+Stable tag: 1.2.0
+WC requires at least: 3.0.0
+WC tested up to: 3.2.3
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Stop Shipping to PO Boxes
 
 == Description ==
+**Developer Note**: This plugin will soon require PHP 5.6 or greater to be in place.
+
+Please contact us at info@majemedia.com or go to https://www.majemedia.com and use our live chat feature if you'd like our help updating your site to use more modern software.
+
 Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addresses.
 
 - If same billing/shipping address the customer cannot complete checkout with a PO Box as a billing/shipping address.
 - If the customer is shipping to a different physical address they cannot use a PO Box as a shipping address, but can use it as a billing address.
 - Does not restrict the use of PO Boxes on Digital/Virtual only carts.
 - Requires that WooCommerce shipping is enabled.
-- Requires that WooCommerce has a shipping method setup (can be free shipping only)
+- Requires that WooCommerce has a shipping method setup (can be free shipping only).
 
-Usage and extending examples can be found here: https://majemedia.com/plugins/no-po-boxes
+[Usage and extending examples](https://majemedia.com/plugins/no-po-boxes)
 
-Github project: https://github.com/majemedia/MajeMedia-WC-No-PO-Boxes
+[Github project](https://github.com/majemedia/MajeMedia-WC-No-PO-Boxes)
 
 == Installation ==
 1. Have WooCommerce installed and activated
@@ -34,6 +41,14 @@ Github project: https://github.com/majemedia/MajeMedia-WC-No-PO-Boxes
 3. Settings page with configurable messaging (no html markup allowed)
 
 == Changelog ==
+= 1.2.0 =
+* Update: Plugin Name to "WooCommerce: No PO Boxes" from "Maje WooCommerce No PO Boxes" for WC extension conformity.
+* Update: Added Requires PHP 5.6 header to plugin main file and readme
+* Update: Readme information to claim 5.6 required. Not yet required. Just setting the stage
+* Update: Actually setting tested against WordPress 4.9
+* Refactor: Code and usage in preparation for switch to requiring PHP 5.6+
+* Prevention: Verifying that the returned variable type in the 'mmwc_restricted_words' filter is an array otherwise resetting to default set of words
+
 = 1.1.12 = 
 * Tested against WordPress 4.9
 * tested against WooCommerce 3.2.3

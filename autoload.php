@@ -6,8 +6,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Slash in front
 $files_to_load = array(
-	'/classes/MM_Dashboard_Settings.php',
-	'/classes/MM_Checkout.php',
+	'/classes/MWNPB_DashboardSettings.php',
+	'/classes/MWNPB_Checkout.php',
 );
 
 foreach ( $files_to_load as $file ) {

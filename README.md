@@ -2,6 +2,10 @@
 Disallows the use of PO Boxes for shipping when using WooCommerce
 
 ## Description
+**Developer Note**: This plugin will soon require PHP 5.6 or greater to be in place.
+
+Please contact us at info@majemedia.com or go to https://www.majemedia.com and use our live chat feature if you'd like our help updating your site to use more modern software.
+
 Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addresses.
 
 - If same billing/shipping address the customer cannot complete checkout with a PO Box as a billing/shipping address.
@@ -46,16 +50,20 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
          * You'll need to modify this example function since a number of different filtering options are being used.
          */
     
-        // Remove options by word (has to be exact to what is in `MajeMedia_WC_No_Po_Checkout::restricted_strings()` );
+        // Remove options by word (has to be exact to what is in `MajeMedia_WC_No_Po_Checkout::RestrictedStrings()` );
         if ( ( $key = array_search( 'word I do not want to filter', $words ) ) !== FALSE ) {
             unset( $words[ $key ] );
         }
     
-        // Remove strings by array_key from `MajeMedia_WC_No_Po_Checkout::restricted_strings()`
+        // Remove strings by array_key from `MajeMedia_WC_No_Po_Checkout::RestrictedStrings()`
         unset( $words[ 0 ] ); // unsets "po box"
     
         // Add an additional string
         $words[] = 'my new restricted string';
+        
+        // Add multiple additional strings
+        $words[] = 'new string 1';
+        $words[] = 'new string 2';
     
         // delete all restricted strings from default plugin and define your own
         $words = array( 'my restriction 1', 'my restriction 2' );
@@ -65,6 +73,11 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
     }
 
 ## Changelog
+### 1.2.0
+* Updated Plugin Name to "WooCommerce: No PO Boxes"
+* Refactored Code and usage in preparation for switch to minimally supporting 5.6
+* Updated readme information to claim 5.6 required. Not yet required. Just setting the stage
+
 ### 1.1.12
 * Tested up to WordPress 4.9
 * Tested up to WooCommerce 3.2.3

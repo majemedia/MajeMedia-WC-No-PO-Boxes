@@ -1,10 +1,10 @@
 <?php
 
 /*
-Plugin Name: Maje WC No PO Boxes
+Plugin Name: WooCommerce: No PO Boxes
 Plugin URI:  https://majemedia.com/plugins/no-po-boxes
 Description: Restricts the use of PO Boxes during WooCommerce checkout. It contains a configurable message to display when a PO Box is attempted to be used. Will not limit the use of PO Boxes for carts that only contain digital products.
-Version:     1.1.12
+Version:     1.2.0
 Author:      Maje Media LLC
 Author URI:  https://majemedia.com
 License:     GPL2
@@ -15,26 +15,25 @@ WC requires at least: 3.0.0
 WC tested up to: 3.2.3
 */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if( ! defined( 'ABSPATH' ) ) {
 	die();
 }
 
-class MajeMedia_WC_No_PO_Boxes {
+class MWNPB {
 
 	private static $instance;
-	public static  $plugin_path;
-
-	const OPTIONS_GROUP         = 'mm_wc_no_po_boxes_options';
-	const OPTIONS_ERROR_MESSAGE = 'mm_wc_no_po_boxes_error_message';
-	const OPTIONS_ENABLE        = 'mm_wc_no_po_boxes_enable';
-	const TEXT_DOMAIN           = 'mm-wc-no-po-boxes';
+	public         $pluginPath;
+	public         $pluginUrl;
+	public         $optionsGroup        = "mm_wc_no_po_boxes_options";
+	public         $optionsErrorMessage = "mm_wc_no_po_boxes_error_message";
+	public         $optionsEnable       = "mm_wc_no_po_boxes_enable";
 
 	/*
 	 * @since v1.0
 	 */
-	public static function get_instance() {
+	public static function GetInstance() {
 
-		if ( ! self::$instance ) {
+		if( ! self::$instance ) {
 			self::$instance = new self();
 		}
 
@@ -46,12 +45,19 @@ class MajeMedia_WC_No_PO_Boxes {
 	 */
 	public function __construct() {
 
-		self::$plugin_path = realpath( dirname( __FILE__ ) );
+		$this->SetClassVars();
 
 		require 'autoload.php';
 
-		$this->admin_actions();
-		$this->nopriv_actions();
+		$this->Actions();
+		$this->Filters();
+
+	}
+
+	public function SetClassVars() {
+
+		$this->pluginPath = realpath( dirname( __FILE__ ) );
+		$this->pluginUrl  = plugins_url( '', __FILE__ );
 
 	}
 
@@ -62,10 +68,12 @@ class MajeMedia_WC_No_PO_Boxes {
 	 * @return void
 	 *
 	 */
-	public static function activate() {
+	public static function Activate() {
 
-		update_option( self::OPTIONS_ERROR_MESSAGE, esc_html__( 'Sorry, we cannot ship to P.O. Boxes', 'mm-wc-no-po-boxes' ) );
-		update_option( self::OPTIONS_ENABLE, 'on' );
+		$MWNPB = MWNPB::GetInstance();
+
+		update_option( $MWNPB->optionsErrorMessage, esc_html__( 'Sorry, we cannot ship to P.O. Boxes', 'mm-wc-no-po-boxes' ) );
+		update_option( $MWNPB->optionsEnable, 'on' );
 
 	}
 
@@ -75,14 +83,16 @@ class MajeMedia_WC_No_PO_Boxes {
 	 * @since v1.0
 	 * @description Actions to run upon deactivation of this plugin.
 	 */
-	public static function deactivate() {
+	public static function Deactivate() {
 
 	}
 
-	public static function uninstall() {
+	public static function Uninstall() {
 
-		delete_option( self::OPTIONS_ERROR_MESSAGE );
-		delete_option( self::OPTIONS_ENABLE );
+		$MWNPB = MWNPB::GetInstance();
+
+		delete_option( $MWNPB->optionsErrorMessage );
+		delete_option( $MWNPB->optionsEnable );
 
 	}
 
@@ -91,18 +101,19 @@ class MajeMedia_WC_No_PO_Boxes {
 	 *
 	 * @since v1.0
 	 */
-	public function admin_actions() {
+	public function Actions() {
 
-		// Plugin activatation related
-		add_action( 'activate_plugin', array( 'MajeMedia_WC_No_PO_Boxes', 'activate' ) );
-		add_action( 'deactivate_plugin', array( 'MajeMedia_WC_No_PO_Boxes', 'deactivate' ) );
+		add_action( 'activate_plugin', array( 'MWNPB', 'Activate' ) );
 
-		// Plugin functions
-		add_action( 'admin_init', array( 'MajeMedia_WC_No_PO_Dashboard_Settings', 'register_settings' ) );
-		add_action( 'admin_menu', array( 'MajeMedia_WC_No_PO_Dashboard_Settings', 'setup_options_page' ) );
-		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array(
-			'MajeMedia_WC_No_PO_Dashboard_Settings',
-			'plugin_settings_link',
+		add_action( 'deactivate_plugin', array( 'MWNPB', 'Deactivate' ) );
+
+		add_action( 'admin_init', array( 'MWNPB_DashboardSettings', 'RegisterSettings' ) );
+
+		add_action( 'admin_menu', array( 'MWNPB_DashboardSettings', 'SetupOptionsPage' ) );
+
+		add_action( 'woocommerce_before_checkout_process', array(
+			'MWNPB_Checkout',
+			'GetCheckoutPost',
 		) );
 
 	}
@@ -112,17 +123,17 @@ class MajeMedia_WC_No_PO_Boxes {
 	 *
 	 * @since v1.0
 	 */
-	public function nopriv_actions() {
+	public function Filters() {
 
-		add_action( 'woocommerce_before_checkout_process', array(
-			'MajeMedia_WC_No_Po_Checkout',
-			'get_checkout_post',
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array(
+			'MWNPB_DashboardSettings',
+			'PluginSettingsLink',
 		) );
 
 	}
 
 }
 
-$MajeMedia_WC_No_PO_Boxes = MajeMedia_WC_No_PO_Boxes::get_instance();
+$MWNPB = MWNPB::GetInstance();
 
-register_uninstall_hook(__FILE__, ['MajeMedia_WC_No_PO_Boxes','uninstall']);
+register_uninstall_hook( __FILE__, [ 'MWNPB', 'Uninstall' ] );

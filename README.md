@@ -65,6 +65,11 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
     }
 
 ## Changelog
+### 1.1.12
+* Tested up to WordPress 4.9
+* Tested up to WooCommerce 3.2.3
+* Added the following words to the deny list: PO. Box, PO.Box, P.O Box, P.O
+
 ### 1.1.11
 * Forgot to update version in main php file... fixing to allow for updates in sites using
 

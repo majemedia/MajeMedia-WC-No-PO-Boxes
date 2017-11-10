@@ -3,7 +3,7 @@ Contributors: majemedia
 Tags: woocommerce,checkout,po boxes,don't ship to po boxes,disallow po box shipping,prevent po boxes,post office box
 Requires at least: 4.3.2
 Tested up to: 4.8.2
-Stable tag: 1.1.11
+Stable tag: 1.1.12
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,11 @@ Github project: https://github.com/majemedia/MajeMedia-WC-No-PO-Boxes
 3. Settings page with configurable messaging (no html markup allowed)
 
 == Changelog ==
+= 1.1.12 = 
+* Tested against WordPress 4.9
+* tested against WooCommerce 3.2.3
+* Added the following words to the deny list: PO. Box, PO.Box, P.O Box, P.O
+
 = 1.1.11 =
 * Forgot to update version in main php file... fixing to allow for updates in sites using
 

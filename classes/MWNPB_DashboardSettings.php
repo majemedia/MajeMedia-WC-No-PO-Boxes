@@ -22,7 +22,6 @@ class MWNPB_DashboardSettings extends MWNPB_Base {
 		register_setting( $this->optionsGroup, $this->optionsErrorMessage );
 		register_setting( $this->optionsGroup, $this->optionsEnable );
 		register_setting( $this->optionsGroup, $this->optionsShippingRestrictions );
-		register_setting( $this->optionsGroup, $this->optionsShippingMethods );
 		register_setting( $this->optionsGroup, $this->optionsShippingZones );
 
 		/*
@@ -61,11 +60,6 @@ class MWNPB_DashboardSettings extends MWNPB_Base {
 			"OptionsShippingZones",
 		), $this->menuSlug, $this->settingsSectionOptions );
 
-		add_settings_field( $this->optionsShippingMethods, $this->optionsShippingMethodsName, array(
-			$this,
-			"OptionsShippingMethods",
-		), $this->menuSlug, $this->settingsSectionOptions );
-
 	}
 
 	/**
@@ -95,16 +89,8 @@ class MWNPB_DashboardSettings extends MWNPB_Base {
 
 	public function OptionsShippingZones() {
 
-		$shipping_zones     = WC_Shipping_Zones::get_zones();
-		$description        = __( "For each shipping zone Uncheck the shipping methods that <strong>ALLOW</strong> shipping to P.O. Boxes.<br /><strong>New shipping zones are unchecked by default.</strong>", 'mm-wc-no-po-boxes' );
-		$noZonesDescription = __( "No Shipping Zones are currently configured. Use: ", 'mm-wc-no-po-boxes' ) . $this->optionsShippingMethodsName;
-		$optionValue        = get_option( $this->optionsShippingZones, FALSE );
-
-		if( empty( $shipping_zones ) ) {
-			echo $noZonesDescription;
-
-			return;
-		}
+		$shipping_zones = WC_Shipping_Zones::get_zones();
+		$description    = __( "Select 'Allow PO' for each shipping method allowed to ship to P.O. Boxes. New methods are automatically not allowed to ship to P.O. Boxes", 'mm-wc-no-po-boxes' );
 
 		echo <<<EOT
 <p>
@@ -112,74 +98,54 @@ class MWNPB_DashboardSettings extends MWNPB_Base {
 </p>
 EOT;
 
-		foreach( $shipping_zones as $zoneId => $zone ) {
+		if( ! empty( $shipping_zones ) ) {
 
-			echo "<h3>Zone: {$zone['zone_name']}</h3>";
+			foreach( $shipping_zones as $zoneId => $zone ) {
 
-			if( empty( $zone[ 'shipping_methods' ] ) ) {
-				_e( "This zone doesn't have any shipping methods", 'mm-wc-no-po-boxes' );
-				continue;
-			}
+				echo "<h3>Zone: {$zone['zone_name']}</h3>";
 
-			foreach( $zone[ 'shipping_methods' ] as $methodId => $Method ) {
-
-				$checked = "checked='checked'";
-
-				if( $optionValue !== FALSE || ! empty( $optionValue ) ) {
-
-					if( ! isset( $optionValue[ $methodId ] ) ) {
-
-						$checked = '';
-
-					}
-
+				if( empty( $zone[ 'shipping_methods' ] ) ) {
+					_e( "This zone doesn't have any shipping methods", 'mm-wc-no-po-boxes' );
+					continue;
 				}
 
-				echo <<<EOT
-<input type="checkbox" name="{$this->optionsShippingZones}[{$methodId}]" id="{$this->optionsShippingZones}[{$methodId}]" $checked>
-<label for="{$this->optionsShippingZones}[{$methodId}]">{$Method->method_title}</label><br />
-EOT;
+				echo $this->ShippingMethodSelectBuilder( $this->optionsShippingZones, FALSE, $zone[ 'shipping_methods' ] );
 
 			}
 
 		}
+
+		echo "<h3>" . __( "Not Covered By Other Zones (Fallback)", 'mm-wc-no-po-boxes' ) . "</h3>";
+		$WCShipZone = new WC_Shipping_Zone( 0 );
+		echo $this->ShippingMethodSelectBuilder( $this->optionsShippingZones, FALSE, $WCShipZone->get_shipping_methods() );
 
 	}
 
-	public function OptionsShippingMethods() {
+	private function ShippingMethodSelectBuilder( $optionName, $optionDefault, $shipping_methods ) {
 
+		$optionValue = get_option( $optionName, $optionDefault );
+		$output      = '';
 
-		$WCShipping  = new WC_Shipping();
-		$description = __( "Uncheck the shipping methods that ALLOW shipping to P.O. Boxes for methods that are used when no zones are available or match the shipping destination.", 'mm-wc-no-po-boxes' );
-		$optionValue = get_option( $this->optionsShippingMethods, FALSE );
+		foreach( $shipping_methods as $methodId => $Method ) {
 
-		echo <<<EOT
-<p>
-{$description}	
-</p>
-EOT;
+			$selectedNo  = 'selected';
+			$selectedYes = '';
 
-		foreach( $WCShipping->get_shipping_methods() as $methodSlug => $Method ) {
-
-			$checked = "checked='checked'";
-
-			if( $optionValue !== FALSE || ! empty( $optionValue ) ) {
-
-				if( ! isset( $optionValue[ $methodSlug ] ) ) {
-
-					$checked = "";
-
-				}
-
+			if( $optionValue[ $methodId ] === "yes" ) {
+				$selectedYes = "selected";
+				$selectedNo  = '';
 			}
 
-			echo <<<EOT
-
-<input type="checkbox" name="{$this->optionsShippingMethods}[{$methodSlug}]" id="{$this->optionsShippingMethods}[{$methodSlug}]" $checked />
-<label for="{$this->optionsShippingMethods}[{$methodSlug}]">{$Method->method_title}</label><br />
+			$output .= <<<EOT
+<select name="{$optionName}[{$methodId}]" id="{$optionName}[{$methodId}]">
+<option value="no" {$selectedNo}>No PO</option>
+<option value="yes" {$selectedYes}>Allow PO</option>
+</select> : <label for="{$optionName}[{$methodId}]">{$Method->method_title}</label><br />
 EOT;
 
 		}
+
+		return $output;
 
 	}
 

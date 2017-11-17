@@ -52,6 +52,73 @@ class MWNPB_Checkout extends MWNPB_Base {
 
 		if( $hasPoBox[ 'po_found' ] ) {
 
+			if( get_option( $this->optionsShippingRestrictions, $this->optionsShippingRestrictionsDefault ) === 'on' ) {
+
+				$shipping_zones = get_option( $this->optionsShippingZones, "all" );
+
+				if( ! empty( $_POST[ 'shipping_method' ] ) && $shipping_zones !== "all" ) {
+
+					foreach( $_POST[ 'shipping_method' ] as $method ) {
+
+						$method_array = explode( ':', $method );
+						$methodId     = (int) $method_array[ 1 ];
+
+						if( array_key_exists( $methodId, $shipping_zones ) ) {
+
+							if( $shipping_zones[ $methodId ] === 'yes' ) {
+
+								/*
+								 * Filter: mwnpb_restrict_shipping_method
+								 *
+								 * @since 2.0.0
+								 *
+								 * Expected return: Boolean
+								 *
+								 * This filter will, when returned TRUE, will allow for the shipping method to not allow P.O. Boxes for a shipping method that has been saved as "Allowed".
+								 * This is good for specific situations where you want the shipping method restricted but most of the time the method should be allowed to ship to P.O. Boxes.
+								 *
+								 * Usage examples and discussion: https://www.majemedia.com/plugins/no-po-boxes/#mwnpb_restrict_shipping_method
+								 *
+								 */
+								$restrictShipMethod = (bool) apply_filters( 'mwnpb_restrict_shipping_method', FALSE );
+
+								if( ! $restrictShipMethod ) {
+									return FALSE;
+								}
+
+							}
+
+						}
+
+					}
+
+				}
+
+			}
+
+			/*
+			 * Filter: mwnpb_allow_pobox
+			 *
+			 * @since 2.0.0
+			 *
+			 * Expected return: Boolean
+			 *
+			 * This filter, when returned as TRUE will allow for a PO Box to be in the shipping address.
+			 *
+			 * Online Example: https://www.majemedia.com/plugins/no-po-boxes/#mwnpb_allow_pobox
+			 *
+			 * Additional Arguments available:
+			 * - $hasPoBox['string']: the string that triggered the error
+			 * - $hasPoBox['field']: the field that triggered the error
+			 *
+			 * Default is FALSE
+			 */
+
+			$allowPoBox = apply_filters( 'mwnpb_allow_pobox', FALSE, $hasPoBox[ 'string' ], $hasPoBox[ 'field' ] );
+			if( $allowPoBox ) {
+				return FALSE;
+			}
+
 			/*
 			 * Filter: mmwc_restricted_message
 			 *
@@ -61,7 +128,7 @@ class MWNPB_Checkout extends MWNPB_Base {
 			 *
 			 * example return: "This is the message that's displayed when checkout fails";
 			 *
-			 * Online Example: https://majemedia.com/plugins/no-po-boxes/#mmwc_restricted_message
+			 * Online Example: https://www.majemedia.com/plugins/no-po-boxes/#mmwc_restricted_message
 			 *
 			 * Additional Arguments available:
 			 * - $hasPoBox[ 'string' ]: the string that triggered the error

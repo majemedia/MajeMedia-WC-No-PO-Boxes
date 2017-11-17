@@ -12,7 +12,6 @@ abstract class MWNPB_Base {
 	public $optionsErrorMessage                = "mm_wc_no_po_boxes_error_message";
 	public $optionsEnable                      = "mm_wc_no_po_boxes_enable";
 	public $optionsShippingRestrictions        = "mm_wc_no_po_boxes_shipping_restrictions";
-	public $optionsShippingMethods             = "mm_wc_no_po_boxes_methods";
 	public $optionsShippingZones               = "mm_wc_no_po_boxes_zones";
 	public $settingsSectionOptions             = "settingsSectionsOptions";
 	public $settingsSectionSupport             = "settingsSectionsSupport";
@@ -21,13 +20,11 @@ abstract class MWNPB_Base {
 	public $menuSlug                           = "mm_wc_no_po_boxes";
 	public $optionsEnableDefault               = "on";
 	public $optionsShippingRestrictionsDefault = "on";
-	public $optionsShippingMethodsDefault      = "on";
 	public $optionsShippingZonesDefault        = "on";
 	public $optionsEnableName;
 	public $optionsErrorMessageName;
 	public $optionsErrorMessageDefault;
 	public $optionsShippingRestrictionsName;
-	public $optionsShippingMethodsName;
 	public $optionsShippingZonesName;
 	public $settingsSectionOptionsName;
 	public $settingsSectionSupportName;
@@ -41,7 +38,6 @@ abstract class MWNPB_Base {
 		$this->optionsErrorMessageName         = __( "Error Message", "mm-wc-no-po-boxes" );
 		$this->optionsErrorMessageDefault      = __( "Sorry, we cannot ship to P.O. Boxes", 'mm-wc-no-po-boxes' );
 		$this->optionsShippingRestrictionsName = __( "Enable Restriction by Shipping Method" );
-		$this->optionsShippingMethodsName      = __( "Fallback Shipping Methods", 'mm-wc-no-po-boxes' );
 		$this->optionsShippingZonesName        = __( "Shipping Zones", 'mm-wc-no-po-boxes' );
 		$this->settingsSectionInfoName         = __( "Information", "mm-wc-no-po-boxes" );
 		$this->settingsSectionSupportName      = __( "Support", "mm-wc-no-po-boxes" );

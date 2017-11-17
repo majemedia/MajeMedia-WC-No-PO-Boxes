@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
+if( ! defined( 'ABSPATH' ) ) {
 	die();
 }
 
@@ -11,6 +11,6 @@ $files_to_load = array(
 	'/classes/MWNPB_Checkout.php',
 );
 
-foreach ( $files_to_load as $file ) {
+foreach( $files_to_load as $file ) {
 	require_once realpath( dirname( __FILE__ ) ) . $file;
 }

@@ -194,6 +194,9 @@ EOT;
 We're considering adding an opt-in only live support chat that would appear on this page only. This option would collect data about you (login email) and your site (web address and site name).<br />
 In order to avoid adding features that our user base might not appreciate or want we've setup a survey to gather feedback (yes/no/more info). <a href="https://www.surveymonkey.com/r/RWPJ8M5" target="_blank">Take the survey here. Link opens in new tab/window.</a>
 </p>
+<p>
+In the meantime, please <a href="https://www.majemedia.com/plugins/no-po-boxes/" target="_blank">visit the plugin page</a> for more information on usage and extending.
+</p>
 EOT;
 
 	}

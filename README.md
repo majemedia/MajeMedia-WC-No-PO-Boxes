@@ -25,6 +25,45 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
 
 ## Extending
 
+### Filter: `mwnpb_restrict_shipping_method`
+[example](https://www.majemedia.com/plugins/no-po-boxes/#mwnpb_restrict_shipping_method)
+
+    add_filter( 'mwnpb_restrict_shipping_method', 'mwnpb_restrict_shipping_method_example', 10, 3 );
+    function mwnpb_restrict_shipping_method_example( $restrict_shipping_method = FALSE ) {
+    
+        /*
+         * This filter defaults to FALSE. And only fires when a shipping method is NOT
+         * restricted from P.O. Box shipping.
+         * 
+         * This allows you to have exceptions in specific situations to not allow P.O. Box shipping 
+         * to a shipping method that would normally allow it.
+        */
+    
+        // Set $restrict_shipping_method to TRUE to disallow P.O. Boxes
+        // (DEFAULT) Set $restrict_shipping_method to FALSE to allow P.O. Boxes
+    
+        return $restrict_shipping_method;
+    
+    }
+
+### Filter: `mwnpb_allow_pobox`
+[example](https://www.majemedia.com/plugins/no-po-boxes/#mwnpb_allow_pobox)
+
+    add_filter( 'mwnpb_allow_pobox', 'mwnpb_allow_pobox_example', 10, 3 );
+    function mwnpb_allow_pobox_example( $allow_po_box = FALSE ) {
+    
+        /*
+         * This filter defaults to FALSE. It is fired immediately before stopping the
+         * checkout process from continuing.
+        */
+        
+        // Set $allow_po_box to TRUE to allow a P.O. Box ship to address in specific situations
+        // (DEFAULT) Set $allow_po_box to FALSE to disallow a P.O. Box from being shipped to.
+    
+        return $allow_po_box;
+    
+    }
+
 ### Filter: `mmwc_restricted_message`
 [example](https://majemedia.com/plugins/no-po-boxes/#mmwc_restricted_message)
 
@@ -73,10 +112,13 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
     }
 
 ## Changelog
-### 1.2.0
-* Updated Plugin Name to "WooCommerce: No PO Boxes"
-* Refactored Code and usage in preparation for switch to minimally supporting 5.6
-* Updated readme information to claim 5.6 required. Not yet required. Just setting the stage
+### 2.0.0
+* New: Restrict by Shipping Method per Shipping Zone
+* New: Filter: [mwnpb_restrict_shipping_method](https://www.majemedia.com/plugins/no-po-boxes/#mwnpb_restrict_shipping_method)
+* New: Filter: [mwnpb_allow_pobox](https://www.majemedia.com/plugins/no-po-boxes/#mwnpb_allow_pobox)
+* Update: Updated Plugin Name to "WooCommerce: No PO Boxes"
+* Maintenance: Refactored Code and usage in preparation for switch to minimally supporting 5.6
+* Meta: readme information to claim 5.6 required. Not yet required. Just setting the stage
 
 ### 1.1.12
 * Tested up to WordPress 4.9

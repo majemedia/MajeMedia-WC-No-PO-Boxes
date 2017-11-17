@@ -4,9 +4,9 @@ Tags: woocommerce,checkout,po boxes,don't ship to po boxes,disallow po box shipp
 Requires at least: 4.3.2
 Tested up to: 4.9
 Requires PHP: 5.6
-Stable tag: 1.2.0
+Stable tag: 2.0.0
 WC requires at least: 3.0.0
-WC tested up to: 3.2.3
+WC tested up to: 3.2.4
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,13 +41,16 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
 3. Settings page with configurable messaging (no html markup allowed)
 
 == Changelog ==
-= 1.2.0 =
+= 2.0.0 =
+* New: Restrict by Shipping Method per Shipping Zone
+* New: Filter: [mwnpb_restrict_shipping_method](https://www.majemedia.com/plugins/no-po-boxes/#mwnpb_restrict_shipping_method)
+* New: Filter: [mwnpb_allow_pobox](https://www.majemedia.com/plugins/no-po-boxes/#mwnpb_allow_pobox)
+* Bug Fix: Verifying that the returned variable type in the 'mmwc_restricted_words' filter is an array otherwise resetting to default set of words
 * Update: Plugin Name to "WooCommerce: No PO Boxes" from "Maje WooCommerce No PO Boxes" for WC extension conformity.
-* Update: Added Requires PHP 5.6 header to plugin main file and readme
-* Update: Readme information to claim 5.6 required. Not yet required. Just setting the stage
 * Update: Actually setting tested against WordPress 4.9
-* Refactor: Code and usage in preparation for switch to requiring PHP 5.6+
-* Prevention: Verifying that the returned variable type in the 'mmwc_restricted_words' filter is an array otherwise resetting to default set of words
+* Maintenance: Complete codebase refactor to make future updates less time intensive
+* Meta: Added Requires PHP 5.6 header to plugin main file and readme
+* Meta: Readme information to claim 5.6 required. Not yet required. Just setting the stage
 
 = 1.1.12 = 
 * Tested against WordPress 4.9

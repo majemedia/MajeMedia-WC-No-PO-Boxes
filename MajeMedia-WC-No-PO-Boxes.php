@@ -19,14 +19,11 @@ if( ! defined( 'ABSPATH' ) ) {
 	die();
 }
 
-class MWNPB {
+require_once 'autoload.php';
+
+class MWNPB extends MWNPB_Base {
 
 	private static $instance;
-	public         $pluginPath;
-	public         $pluginUrl;
-	public         $optionsGroup        = "mm_wc_no_po_boxes_options";
-	public         $optionsErrorMessage = "mm_wc_no_po_boxes_error_message";
-	public         $optionsEnable       = "mm_wc_no_po_boxes_enable";
 
 	/*
 	 * @since v1.0
@@ -45,19 +42,10 @@ class MWNPB {
 	 */
 	public function __construct() {
 
-		$this->SetClassVars();
-
-		require 'autoload.php';
+		parent::__construct();
 
 		$this->Actions();
 		$this->Filters();
-
-	}
-
-	public function SetClassVars() {
-
-		$this->pluginPath = realpath( dirname( __FILE__ ) );
-		$this->pluginUrl  = plugins_url( '', __FILE__ );
 
 	}
 
@@ -68,28 +56,16 @@ class MWNPB {
 	 * @return void
 	 *
 	 */
-	public static function Activate() {
+	public function Activate() {
 
-		$MWNPB = MWNPB::GetInstance();
-
-		update_option( $MWNPB->optionsErrorMessage, esc_html__( 'Sorry, we cannot ship to P.O. Boxes', 'mm-wc-no-po-boxes' ) );
-		update_option( $MWNPB->optionsEnable, 'on' );
-
-	}
-
-	/**
-	 * Actions to perform during the deactivation of this plugin
-	 *
-	 * @since v1.0
-	 * @description Actions to run upon deactivation of this plugin.
-	 */
-	public static function Deactivate() {
+		update_option( $this->optionsErrorMessage, $this->optionsErrorMessageDefault );
+		update_option( $this->optionsEnable, $this->optionsEnableDefault );
 
 	}
 
 	public static function Uninstall() {
 
-		$MWNPB = MWNPB::GetInstance();
+		global $MWNPB;
 
 		delete_option( $MWNPB->optionsErrorMessage );
 		delete_option( $MWNPB->optionsEnable );
@@ -103,16 +79,14 @@ class MWNPB {
 	 */
 	public function Actions() {
 
-		add_action( 'activate_plugin', array( 'MWNPB', 'Activate' ) );
+		$Dashboard = new MWNPB_DashboardSettings();
+		$Checkout  = new MWNPB_Checkout();
 
-		add_action( 'deactivate_plugin', array( 'MWNPB', 'Deactivate' ) );
-
-		add_action( 'admin_init', array( 'MWNPB_DashboardSettings', 'RegisterSettings' ) );
-
-		add_action( 'admin_menu', array( 'MWNPB_DashboardSettings', 'SetupOptionsPage' ) );
-
+		add_action( 'activate_plugin', array( $this, 'Activate' ) );
+		add_action( 'admin_init', array( $Dashboard, 'RegisterSettings' ) );
+		add_action( 'admin_menu', array( $Dashboard, 'SetupOptionsPage' ) );
 		add_action( 'woocommerce_before_checkout_process', array(
-			'MWNPB_Checkout',
+			$Checkout,
 			'GetCheckoutPost',
 		) );
 
@@ -125,8 +99,10 @@ class MWNPB {
 	 */
 	public function Filters() {
 
+		$Dashboard = new MWNPB_DashboardSettings();
+
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array(
-			'MWNPB_DashboardSettings',
+			$Dashboard,
 			'PluginSettingsLink',
 		) );
 
@@ -136,4 +112,4 @@ class MWNPB {
 
 $MWNPB = MWNPB::GetInstance();
 
-register_uninstall_hook( __FILE__, [ 'MWNPB', 'Uninstall' ] );
+register_uninstall_hook( __FILE__, array( 'MWNPB', 'Uninstall' ) );

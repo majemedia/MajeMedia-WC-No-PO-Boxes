@@ -8,9 +8,11 @@ if( ! defined( 'ABSPATH' ) ) {
  * Some of this came from here: https://docs.woothemes.com/document/dont-allow-po-box-shipping/
  */
 
-class MWNPB_Checkout {
+class MWNPB_Checkout extends MWNPB_Base {
 
 	public function __construct() {
+
+		parent::__construct();
 
 	}
 
@@ -21,14 +23,13 @@ class MWNPB_Checkout {
 	 *
 	 * @since 1.0
 	 */
-	public static function GetCheckoutPost() {
+	public function GetCheckoutPost() {
 
 		if( ! WC()->cart->needs_shipping() ) {
 			return FALSE;
 		}
 
-		$MWNPB   = MWNPB::GetInstance();
-		$enabled = get_option( $MWNPB->optionsEnable );
+		$enabled = get_option( $this->optionsEnable );
 
 		if( $enabled !== 'on' ) {
 			return FALSE;
@@ -47,7 +48,7 @@ class MWNPB_Checkout {
 
 		}
 
-		$hasPoBox = self::PoBoxExists( $address_fields );
+		$hasPoBox = $this->PoBoxExists( $address_fields );
 
 		if( $hasPoBox[ 'po_found' ] ) {
 
@@ -69,9 +70,9 @@ class MWNPB_Checkout {
 			 * Description: Allows for the programmatic updating of the list of restricted words
 			 *
 			 */
-			$restrictedShippingMessage = apply_filters( 'mmwc_restricted_message', esc_attr( get_option( $MWNPB->optionsErrorMessage ) ), $hasPoBox[ 'string' ], $hasPoBox[ 'field' ] );
+			$restrictedShippingMessage = apply_filters( 'mmwc_restricted_message', esc_attr( get_option( $this->optionsErrorMessage ) ), $hasPoBox[ 'string' ], $hasPoBox[ 'field' ] );
 
-			wc_add_notice( esc_html__( $restrictedShippingMessage, 'mm-wc-no-po-boxes' ), 'error' );
+			wc_add_notice( esc_html( $restrictedShippingMessage ), 'error' );
 
 		}
 
@@ -137,7 +138,7 @@ class MWNPB_Checkout {
 	 *
 	 * @return array
 	 */
-	public static function PoBoxExists( $address_fields ) {
+	public function PoBoxExists( $address_fields ) {
 
 		foreach( $address_fields as $key => $address ) {
 

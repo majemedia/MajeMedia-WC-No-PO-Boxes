@@ -21,6 +21,8 @@ class MWNPB_DashboardSettings extends MWNPB_Base {
 
 		register_setting( $this->optionsGroup, $this->optionsErrorMessage );
 		register_setting( $this->optionsGroup, $this->optionsEnable );
+		register_setting( $this->optionsGroup, $this->optionsShippingMethods );
+		register_setting( $this->optionsGroup, $this->optionsShippingZones );
 
 		/*
 		 * Support Section
@@ -48,8 +50,15 @@ class MWNPB_DashboardSettings extends MWNPB_Base {
 			"OptionsErrorMessage",
 		), $this->menuSlug, $this->settingsSectionOptions );
 
-		/*_log( WC_Shipping_Zones::get_zones() );
-		_log( $WCShipping->get_shipping_methods() );*/
+		add_settings_field( $this->optionsShippingZones, $this->optionsShippingZonesName, array(
+			$this,
+			"OptionsShippingZones",
+		), $this->menuSlug, $this->settingsSectionOptions );
+
+		add_settings_field( $this->optionsShippingMethods, $this->optionsShippingMethodsName, array(
+			$this,
+			"OptionsShippingMethods",
+		), $this->menuSlug, $this->settingsSectionOptions );
 
 	}
 
@@ -63,7 +72,7 @@ class MWNPB_DashboardSettings extends MWNPB_Base {
 	public function SetupOptionsPage() {
 
 		$parent_slug = 'woocommerce';
-		$page_title  = esc_html__( "Don't Allow PO Boxes", 'mm-wc-no-po-boxes' );
+		$page_title  = esc_html__( "No PO Boxes", 'mm-wc-no-po-boxes' );
 		$menu_title  = esc_html__( 'No PO Boxes', 'mm-wc-no-po-boxes' );
 		$capability  = 'manage_woocommerce';
 		$callback    = array( $this, 'OptionsPage', );
@@ -78,9 +87,99 @@ class MWNPB_DashboardSettings extends MWNPB_Base {
 
 	}
 
+	public function OptionsShippingZones() {
+
+		$shipping_zones     = WC_Shipping_Zones::get_zones();
+		$description        = __( "For each shipping zone Uncheck the shipping methods that <strong>ALLOW</strong> shipping to P.O. Boxes.<br /><strong>New shipping zones are unchecked by default.</strong>", 'mm-wc-no-po-boxes' );
+		$noZonesDescription = __( "No Shipping Zones are currently configured. Use: ", 'mm-wc-no-po-boxes' ) . $this->optionsShippingMethodsName;
+		$optionValue        = get_option( $this->optionsShippingZones, FALSE );
+
+		if( empty( $shipping_zones ) ) {
+			echo $noZonesDescription;
+
+			return;
+		}
+
+		echo <<<EOT
+<p>
+{$description}
+</p>
+EOT;
+
+		foreach( $shipping_zones as $zoneId => $zone ) {
+
+			echo "<h3>Zone: {$zone['zone_name']}</h3>";
+
+			if( empty( $zone[ 'shipping_methods' ] ) ) {
+				_e( "This zone doesn't have any shipping methods", 'mm-wc-no-po-boxes' );
+				continue;
+			}
+
+			foreach( $zone[ 'shipping_methods' ] as $methodId => $Method ) {
+
+				$checked = "checked='checked'";
+
+				if( $optionValue !== FALSE || ! empty( $optionValue ) ) {
+
+					if( ! isset( $optionValue[ $zoneId ][ $methodId ] ) ) {
+
+						$checked = '';
+
+					}
+
+				}
+
+				echo <<<EOT
+<input type="checkbox" name="{$this->optionsShippingZones}[{$zoneId}][{$methodId}]" id="{$this->optionsShippingZones}[{$zoneId}][{$methodId}]" $checked>
+<label for="{$this->optionsShippingZones}[{$zoneId}][{$methodId}]">{$Method->method_title}</label><br />
+EOT;
+
+			}
+
+		}
+
+	}
+
+	public function OptionsShippingMethods() {
+
+
+		$WCShipping  = new WC_Shipping();
+		$description = __( "Uncheck the shipping methods that ALLOW shipping to P.O. Boxes for methods that are used when no zones are available or match the shipping destination.", 'mm-wc-no-po-boxes' );
+		$optionValue = get_option( $this->optionsShippingMethods, FALSE );
+
+		echo <<<EOT
+<p>
+{$description}	
+</p>
+EOT;
+
+		foreach( $WCShipping->get_shipping_methods() as $methodSlug => $Method ) {
+
+			$checked = "checked='checked'";
+
+			if( $optionValue !== FALSE || ! empty( $optionValue ) ) {
+
+				if( ! isset( $optionValue[ $methodSlug ] ) ) {
+
+					$checked = "";
+
+				}
+
+			}
+
+			echo <<<EOT
+
+<input type="checkbox" name="{$this->optionsShippingMethods}[{$methodSlug}]" id="{$this->optionsShippingMethods}[{$methodSlug}]" $checked />
+<label for="{$this->optionsShippingMethods}[{$methodSlug}]">{$Method->method_title}</label><br />
+EOT;
+
+		}
+
+	}
+
 	public function OptionsErrorMessage() {
 
-		$description = __( "This message will be displayed as an error on the checkout page when a P.O. Box is detected",'mm-wc-no-po-boxes');
+		$description = __( "This message will be displayed as an error on the checkout page when a P.O. Box is detected", 'mm-wc-no-po-boxes' );
 
 		echo $this->RenderSingleLineText( $this->optionsErrorMessage, $description, $this->optionsErrorMessageDefault );
 
@@ -122,7 +221,7 @@ EOT;
 	private function RenderSingleLineText( $optionName, $fieldDescription, $default ) {
 
 		$optionValue = esc_attr( get_option( $optionName, $default ) );
-		$output = <<<EOT
+		$output      = <<<EOT
 <p>
 <input type="text" name="{$optionName}" id="{$optionName}" value="{$optionValue}" class="regular-text">
 </p>
@@ -132,7 +231,6 @@ EOT;
 EOT;
 
 		return $output;
-
 
 	}
 

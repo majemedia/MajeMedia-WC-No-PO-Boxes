@@ -131,7 +131,7 @@ EOT;
 			$selectedNo  = 'selected';
 			$selectedYes = '';
 
-			if( $optionValue[ $methodId ] === "yes" ) {
+			if( isset( $optionValue[$methodId] ) && $optionValue[ $methodId ] === "yes" ) {
 				$selectedYes = "selected";
 				$selectedNo  = '';
 			}

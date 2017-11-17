@@ -112,6 +112,10 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
     }
 
 ## Changelog
+### 2.0.1
+* Fix: Accidentally used a PHP7.0 only argument. Fixed to allow for php 5.3+
+* Fix: Settings page was throwing notices when new, unsaved shipping methods were displayed
+
 ### 2.0.0
 * New: Restrict by Shipping Method per Shipping Zone
 * New: Filter: [mwnpb_restrict_shipping_method](https://www.majemedia.com/plugins/no-po-boxes/#mwnpb_restrict_shipping_method)

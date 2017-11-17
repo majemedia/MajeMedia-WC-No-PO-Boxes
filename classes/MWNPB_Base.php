@@ -32,7 +32,7 @@ abstract class MWNPB_Base {
 
 	public function __construct() {
 
-		$this->pluginPath                      = realpath( dirname( __FILE__, 2 ) );
+		$this->pluginPath                      = realpath( __DIR__ . "/.." );
 		$this->pluginUrl                       = plugins_url( $this->pluginDirName );
 		$this->optionsEnableName               = __( "Enable PO Box Restriction", "mm-wc-no-po-boxes" );
 		$this->optionsErrorMessageName         = __( "Error Message", "mm-wc-no-po-boxes" );

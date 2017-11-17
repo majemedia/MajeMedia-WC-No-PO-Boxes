@@ -176,7 +176,7 @@ EOT;
 	public function PluginSettingsLink( $links ) {
 
 		$adminUrl          = admin_url( "admin.php?page={$this->menuSlug}" );
-		$settingsLinkTitle = _( "Customize Messaging and Enable PO Box Restriction", "mm-wc-no-po-boxes" );
+		$settingsLinkTitle = __( "Customize Messaging and Enable PO Box Restriction", "mm-wc-no-po-boxes" );
 		$settingsLink      = array( "<a href='{$adminUrl}' title='{$settingsLinkTitle}'>Settings</a>" );
 
 		return array_merge( $settingsLink, $links );

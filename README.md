@@ -112,6 +112,9 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
     }
 
 ## Changelog
+### 2.0.2 
+* Fix: Used the wrong function for translation
+
 ### 2.0.1
 * Fix: Accidentally used a PHP7.0 only argument. Fixed to allow for php 5.3+
 * Fix: Settings page was throwing notices when new, unsaved shipping methods were displayed

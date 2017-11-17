@@ -4,7 +4,7 @@ Tags: woocommerce,checkout,po boxes,don't ship to po boxes,disallow po box shipp
 Requires at least: 4.3.2
 Tested up to: 4.9
 Requires PHP: 5.6
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 WC requires at least: 3.0.0
 WC tested up to: 3.2.4
 License: GPL2
@@ -41,6 +41,9 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
 3. Settings page with configurable messaging (no html markup allowed)
 
 == Changelog ==
+= 2.0.2 =
+* Fix: Used the wrong function for translation
+
 = 2.0.1 =
 * Fix: Accidentally used a PHP7.0 only argument. Fixed to allow for php 5.3+
 * Fix: Settings page was throwing notices when new, unsaved shipping methods were displayed

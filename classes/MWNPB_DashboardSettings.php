@@ -21,6 +21,7 @@ class MWNPB_DashboardSettings extends MWNPB_Base {
 
 		register_setting( $this->optionsGroup, $this->optionsErrorMessage );
 		register_setting( $this->optionsGroup, $this->optionsEnable );
+		register_setting( $this->optionsGroup, $this->optionsShippingRestrictions );
 		register_setting( $this->optionsGroup, $this->optionsShippingMethods );
 		register_setting( $this->optionsGroup, $this->optionsShippingZones );
 
@@ -48,6 +49,11 @@ class MWNPB_DashboardSettings extends MWNPB_Base {
 		add_settings_field( $this->optionsErrorMessage, $this->optionsErrorMessageName, array(
 			$this,
 			"OptionsErrorMessage",
+		), $this->menuSlug, $this->settingsSectionOptions );
+
+		add_settings_field( $this->optionsShippingRestrictions, $this->optionsShippingRestrictionsName, array(
+			$this,
+			"OptionsShippingRestrictions",
 		), $this->menuSlug, $this->settingsSectionOptions );
 
 		add_settings_field( $this->optionsShippingZones, $this->optionsShippingZonesName, array(
@@ -121,7 +127,7 @@ EOT;
 
 				if( $optionValue !== FALSE || ! empty( $optionValue ) ) {
 
-					if( ! isset( $optionValue[ $zoneId ][ $methodId ] ) ) {
+					if( ! isset( $optionValue[ $methodId ] ) ) {
 
 						$checked = '';
 
@@ -130,8 +136,8 @@ EOT;
 				}
 
 				echo <<<EOT
-<input type="checkbox" name="{$this->optionsShippingZones}[{$zoneId}][{$methodId}]" id="{$this->optionsShippingZones}[{$zoneId}][{$methodId}]" $checked>
-<label for="{$this->optionsShippingZones}[{$zoneId}][{$methodId}]">{$Method->method_title}</label><br />
+<input type="checkbox" name="{$this->optionsShippingZones}[{$methodId}]" id="{$this->optionsShippingZones}[{$methodId}]" $checked>
+<label for="{$this->optionsShippingZones}[{$methodId}]">{$Method->method_title}</label><br />
 EOT;
 
 			}
@@ -182,6 +188,14 @@ EOT;
 		$description = __( "This message will be displayed as an error on the checkout page when a P.O. Box is detected", 'mm-wc-no-po-boxes' );
 
 		echo $this->RenderSingleLineText( $this->optionsErrorMessage, $description, $this->optionsErrorMessageDefault );
+
+	}
+
+	public function OptionsShippingRestrictions() {
+
+		$description = __( "Toggle P.O. Box Restriction by Shipping Method" );
+
+		echo $this->RenderCheckbox( $this->optionsShippingRestrictions, $description, $this->optionsShippingRestrictionsDefault );
 
 	}
 

@@ -2,11 +2,9 @@
 Contributors: majemedia
 Tags: woocommerce,checkout,po boxes,don't ship to po boxes,disallow po box shipping,prevent po boxes,post office box
 Requires at least: 4.3.2
-Tested up to: 4.9
+Tested up to: 5.2.2
 Requires PHP: 5.6
-Stable tag: 2.0.2
-WC requires at least: 3.0.0
-WC tested up to: 3.2.4
+Stable tag: 2.0.3
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 

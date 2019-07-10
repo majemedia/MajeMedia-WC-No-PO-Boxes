@@ -7,7 +7,7 @@ Disallows the use of PO Boxes for shipping when using WooCommerce
 
 ## Description
 
-Please contact us at [support@majemedia.com](mailto:support@majemedia.com?subject='No Po Boxes') or go to [https://www.majemedia.com](https://majemedia.com/plugins/no-po-boxes) for plugin support.
+Please contact us at support@majemedia.com or go to [https://www.majemedia.com](https://majemedia.com/plugins/no-po-boxes) for plugin support.
 
 Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addresses.
 
@@ -115,6 +115,9 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
     }
 
 ## Changelog
+### 2.0.5
+* Removed mailto link cause it doesn't work
+
 ### 2.0.4
 * Updated screenshots
 * Updated readme changelog

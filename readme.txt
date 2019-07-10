@@ -4,14 +4,14 @@ Tags: woocommerce,checkout,po boxes,don't ship to po boxes,disallow po box shipp
 Requires at least: 4.3.2
 Tested up to: 5.2.2
 Requires PHP: 5.6
-Stable tag: 2.0.5
+Stable tag: 2.0.6
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Stop Shipping to PO Boxes
 
 == Description ==
-Please contact us at [support@majemedia.com](mailto:support@majemedia.com?subject='No Po Boxes') or go to [https://www.majemedia.com](https://majemedia.com/plugins/no-po-boxes) for plugin support.
+Please contact us at support@majemedia.com or go to [https://www.majemedia.com](https://majemedia.com/plugins/no-po-boxes) for plugin support.
 
 Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addresses.
 
@@ -37,6 +37,9 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
 3. Settings page with configurable messaging (no html markup allowed)
 
 == Changelog ==
+= 2.0.6 =
+* Really removed mailto link from readme
+
 = 2.0.5 =
 * Removed mailto link from description because it doesn't work
 

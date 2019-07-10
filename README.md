@@ -115,6 +115,9 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
     }
 
 ## Changelog
+### 2.0.6
+* Remoed mailto link from readme.txt
+
 ### 2.0.5
 * Removed mailto link cause it doesn't work
 

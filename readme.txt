@@ -1,10 +1,10 @@
-=== Maje WooCommerce No PO Boxes ===
+=== WooCommerce: No PO Boxes ===
 Contributors: majemedia
 Tags: woocommerce,checkout,po boxes,don't ship to po boxes,disallow po box shipping,prevent po boxes,post office box
 Requires at least: 4.3.2
 Tested up to: 5.2.2
 Requires PHP: 5.6
-Stable tag: 2.0.6
+Stable tag: 2.0.7
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -37,6 +37,9 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
 3. Settings page with configurable messaging (no html markup allowed)
 
 == Changelog ==
+= 2.0.7 =
+* Renamed plugin to drop "Maje"
+
 = 2.0.6 =
 * Really removed mailto link from readme
 

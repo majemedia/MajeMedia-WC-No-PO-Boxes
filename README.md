@@ -1,8 +1,8 @@
 <p align='center'>
-<img src="https://www.majemedia.com/content/uploads/2016/04/maje_horiz_RGB.png" alt='Maje Media Logo' title="Maje Media LLC">
+<img src="https://raw.githubusercontent.com/MajeMediaLLC/MajeMedia-WC-No-PO-Boxes/master/assets/banner-772x250.png" alt='WooCommerce: No PO Boxes' title="Maje Media LLC">
 </p>
 
-# WooCommerce No PO Boxes
+# WooCommerce: No PO Boxes
 Disallows the use of PO Boxes for shipping when using WooCommerce
 
 ## Description
@@ -25,6 +25,14 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
 1. Go to the settings screen (can be found under the WooCommerce menu as "No PO Boxes")
 1. Insert your custom messages
 1. Click "Save Changes"
+
+## Screenshots
+
+<p align='center'>
+<img width="32%" src="https://raw.githubusercontent.com/MajeMediaLLC/MajeMedia-WC-No-PO-Boxes/master/assets/screenshot-1.png" alt='Screenshot of billing only on checkout' title="When shipping to the same billing address the billing address fields are reviewed">
+<img width="32%" src="https://raw.githubusercontent.com/MajeMediaLLC/MajeMedia-WC-No-PO-Boxes/master/assets/screenshot-2.png" alt='Screenshot of separate shipping on checkout' title="When shipping to a different address only the shipping side is reviewed">
+<img width="32%" src="https://raw.githubusercontent.com/MajeMediaLLC/MajeMedia-WC-No-PO-Boxes/master/assets/screenshot-3.png" alt='Screenshot of settings page' title="Settings page with configurable messaging (no html markup allowed)">
+</p>
 
 ## Extending
 
@@ -115,6 +123,12 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
     }
 
 ## Changelog
+### 2.0.7
+* Changed .org repo name
+* Added new banner image to assets
+* Updated README.md
+* moved screenshots to assets directory
+
 ### 2.0.6
 * Remoed mailto link from readme.txt
 

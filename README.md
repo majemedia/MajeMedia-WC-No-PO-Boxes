@@ -1,10 +1,13 @@
-# Maje Media WooCommerce No PO Boxes
+<p align='center'>
+<img src="https://www.majemedia.com/content/uploads/2016/04/maje_horiz_RGB.png" alt='Maje Media Logo' title="Maje Media LLC">
+</p>
+
+# WooCommerce No PO Boxes
 Disallows the use of PO Boxes for shipping when using WooCommerce
 
 ## Description
-**Developer Note**: This plugin will soon require PHP 5.6 or greater to be in place.
 
-Please contact us at info@majemedia.com or go to https://www.majemedia.com and use our live chat feature if you'd like our help updating your site to use more modern software.
+Please contact us at [support@majemedia.com](mailto:support@majemedia.com?subject='No Po Boxes') or go to [https://www.majemedia.com](https://majemedia.com/plugins/no-po-boxes) for plugin support.
 
 Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addresses.
 
@@ -12,7 +15,7 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
 - If the customer is shipping to a different physical address they cannot use a PO Box as a shipping address, but can use it as a billing address.
 - Does not restrict the use of PO Boxes on Digital/Virtual only carts.
 - Requires that WooCommerce shipping is enabled.
-- Requires that WooCommerce has a shipping method setup (can be free shipping only)
+- Requires that WooCommerce has a shipping method setup (can be free shipping only).
 
 ## Installation
 1. Have WooCommerce installed and activated
@@ -112,6 +115,15 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
     }
 
 ## Changelog
+### 2.0.4
+* Updated screenshots
+* Updated readme changelog
+* Updated github repo link
+* Updated Description with links
+
+### 2.0.3
+* Bumped tested to versions of WordPress & WooCommerce
+
 ### 2.0.2 
 * Fix: Used the wrong function for translation
 

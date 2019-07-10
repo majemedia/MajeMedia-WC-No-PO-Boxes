@@ -4,16 +4,14 @@ Tags: woocommerce,checkout,po boxes,don't ship to po boxes,disallow po box shipp
 Requires at least: 4.3.2
 Tested up to: 5.2.2
 Requires PHP: 5.6
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Stop Shipping to PO Boxes
 
 == Description ==
-**Developer Note**: This plugin will soon require PHP 5.6 or greater to be in place.
-
-Please contact us at info@majemedia.com or go to https://www.majemedia.com and use our live chat feature if you'd like our help updating your site to use more modern software.
+Please contact us at [support@majemedia.com](mailto:support@majemedia.com?subject='No Po Boxes') or go to [https://www.majemedia.com](https://majemedia.com/plugins/no-po-boxes) for plugin support.
 
 Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addresses.
 
@@ -25,7 +23,7 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
 
 [Usage and extending examples](https://majemedia.com/plugins/no-po-boxes)
 
-[Github project](https://github.com/majemedia/MajeMedia-WC-No-PO-Boxes)
+[Github project](https://github.com/MajeMediaLLC/MajeMedia-WC-No-PO-Boxes)
 
 == Installation ==
 1. Have WooCommerce installed and activated
@@ -34,11 +32,20 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
 4. Activate plugin
 
 == Screenshots ==
-1. When shipping to a different address only the shipping side is reviewed
-2. When shipping to the same billing address the billing address fields are reviewed
+1. When shipping to the same billing address the billing address fields are reviewed
+2. When shipping to a different address only the shipping side is reviewed
 3. Settings page with configurable messaging (no html markup allowed)
 
 == Changelog ==
+= 2.0.4 =
+* Updated screenshots
+* Updated readme changelog
+* Updated github repo link
+* Updated Description with links
+
+= 2.0.3 =
+* Bumped tested to versions of WordPress & WooCommerce
+
 = 2.0.2 =
 * Fix: Used the wrong function for translation
 

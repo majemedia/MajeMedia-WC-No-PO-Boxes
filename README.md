@@ -123,6 +123,11 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
     }
 
 ## Changelog
+### 2.0.8
+* Tested to WordPress 5.3
+* Tested to WooCommerce 3.8.1
+* Fixed issue causing checkouts to go through with PO Boxes in limited cases
+
 ### 2.0.7
 * Changed .org repo name
 * Added new banner image to assets

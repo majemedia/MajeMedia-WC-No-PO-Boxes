@@ -137,9 +137,10 @@ class MWNPB_Checkout extends MWNPB_Base {
 			 * Description: Allows for the programmatic updating of the list of restricted words
 			 *
 			 */
-			$restrictedShippingMessage = apply_filters( 'mmwc_restricted_message', esc_attr( get_option( $this->optionsErrorMessage ) ), $hasPoBox[ 'string' ], $hasPoBox[ 'field' ] );
+			$restrictedShippingMessage  = apply_filters( 'mmwc_restricted_message', esc_attr( get_option( $this->optionsErrorMessage ) ), $hasPoBox[ 'string' ], $hasPoBox[ 'field' ] );
+			$_restrictedShippingMessage = esc_html( $restrictedShippingMessage );
 
-			wc_add_notice( esc_html( $restrictedShippingMessage ), 'error' );
+			throw new Exception( $_restrictedShippingMessage );
 
 		}
 
@@ -148,9 +149,9 @@ class MWNPB_Checkout extends MWNPB_Base {
 	/**
 	 * This function contains the array that is used to determine restricted strings.
 	 *
+	 * @return array
 	 * @since 1.0
 	 *
-	 * @return array
 	 */
 	public static function RestrictedStrings() {
 
@@ -199,11 +200,11 @@ class MWNPB_Checkout extends MWNPB_Base {
 	 * PoBoxExists() takes an array of address fields to be used in evaluating their
 	 * content for restricted strings. It returns an array in both true and false cases.
 	 *
-	 * @since 1.0
-	 *
 	 * @param $address_fields
 	 *
 	 * @return array
+	 * @since 1.0
+	 *
 	 */
 	public function PoBoxExists( $address_fields ) {
 

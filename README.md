@@ -123,6 +123,9 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
     }
 
 ## Changelog
+### 2.0.9
+* Github #16: Updated the settings screen display of shipping methods to display the title of the shipping method instead of the shipping method type title.
+
 ### 2.0.8
 * Tested to WordPress 5.3
 * Tested to WooCommerce 3.8.1

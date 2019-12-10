@@ -137,10 +137,13 @@ EOT;
 			}
 
 			$output .= <<<EOT
+<p>
+<label for="{$optionName}[{$methodId}]">{$Method->title}</label>:
 <select name="{$optionName}[{$methodId}]" id="{$optionName}[{$methodId}]">
 <option value="no" {$selectedNo}>No PO</option>
 <option value="yes" {$selectedYes}>Allow PO</option>
-</select> : <label for="{$optionName}[{$methodId}]">{$Method->method_title}</label><br />
+</select>
+</p>
 EOT;
 
 		}

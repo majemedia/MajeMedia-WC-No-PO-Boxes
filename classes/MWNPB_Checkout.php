@@ -61,7 +61,10 @@ class MWNPB_Checkout extends MWNPB_Base {
 					foreach( $_POST[ 'shipping_method' ] as $method ) {
 
 						$method_array = explode( ':', $method );
-						$methodId     = (int) $method_array[ 1 ];
+						$method_value = $method_array[ 1 ];
+						$methodId     = ( is_numeric( $method_value ) )
+							? $method_array[ 1 ]
+							: $method_array[ 0 ];
 
 						if( array_key_exists( $methodId, $shipping_zones ) ) {
 

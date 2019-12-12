@@ -123,6 +123,9 @@ Restricts the WooCommerce checkout form for allowing PO Boxes for shipping addre
     }
 
 ## Changelog
+### 2.1.0
+* Github #17: Plugin is now semi-comptible with WooCommerce's official USPS shipping plugin. Please see github issue referenced for limits of the compatibility.
+
 ### 2.0.9
 * Github #16: Updated the settings screen display of shipping methods to display the title of the shipping method instead of the shipping method type title.
 

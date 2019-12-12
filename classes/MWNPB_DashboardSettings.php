@@ -131,15 +131,28 @@ EOT;
 			$selectedNo  = 'selected';
 			$selectedYes = '';
 
-			if( isset( $optionValue[$methodId] ) && $optionValue[ $methodId ] === "yes" ) {
+			if( isset( $optionValue[ $methodId ] ) && $optionValue[ $methodId ] === "yes" ) {
 				$selectedYes = "selected";
 				$selectedNo  = '';
 			}
 
+			if( get_class( $Method ) === 'WC_Shipping_USPS' ) {
+				$identifier = "{$optionName}[{$Method->id}]";
+
+				if( isset( $optionValue[ 'usps' ] ) && $optionValue[ 'usps' ] === 'yes' ) {
+					$selectedYes = 'selected';
+					$selectedNo  = '';
+				}
+
+			}
+			else {
+				$identifier = "{$optionName}[{$methodId}]";
+			}
+
 			$output .= <<<EOT
 <p>
-<label for="{$optionName}[{$methodId}]">{$Method->title}</label>:
-<select name="{$optionName}[{$methodId}]" id="{$optionName}[{$methodId}]">
+<label for="$identifier">{$Method->title}</label>:
+<select name="$identifier" id="$identifier">
 <option value="no" {$selectedNo}>No PO</option>
 <option value="yes" {$selectedYes}>Allow PO</option>
 </select>
